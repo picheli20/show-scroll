@@ -1,9 +1,9 @@
 import { Theme } from '../../enums/theme.enum';
-import { AppState } from '../interfaces/page.interface';
+import { PageState } from '../interfaces/page.interface';
 import { getTheme, isLoading } from './page.selector';
 
 describe('Page Selectors', () => {
-  const mockState: { page: AppState } = {
+  const mockState: { page: PageState } = {
     page: {
       isLoading: true,
       theme: Theme.DARK,
@@ -17,7 +17,7 @@ describe('Page Selectors', () => {
     });
 
     it('should return false if isLoading is false', () => {
-      const state: { page: AppState } = {
+      const state: { page: PageState } = {
         page: { isLoading: false, theme: Theme.LIGHT },
       };
       expect(isLoading(state)).toBe(false);
@@ -31,7 +31,7 @@ describe('Page Selectors', () => {
     });
 
     it('should return light if theme is light', () => {
-      const state: { page: AppState } = {
+      const state: { page: PageState } = {
         page: { isLoading: false, theme: Theme.LIGHT },
       };
       expect(getTheme(state)).toBe(Theme.LIGHT);

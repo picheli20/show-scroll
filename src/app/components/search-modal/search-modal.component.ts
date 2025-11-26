@@ -44,6 +44,7 @@ export class SearchModalComponent implements OnInit {
     ).subscribe(data => {
       if (data.length === 0) {
         this.pickPopulars();
+        return;
       }
 
       this.isPopular.set(false);

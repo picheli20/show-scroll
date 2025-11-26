@@ -38,7 +38,7 @@ describe('PageEffects', () => {
       actions$.next(setTheme(Theme.DARK));
 
       // Wait a tick to let tap run
-      await new Promise(process.nextTick);
+      await new Promise(resolve => setTimeout(resolve, 0));
 
       expect(pageService.setTheme).toHaveBeenCalledWith();
       expect(pageService.setTheme).toHaveBeenCalledTimes(1);

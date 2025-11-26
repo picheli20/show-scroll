@@ -1,0 +1,15 @@
+:host {
+  --thumb-width: 100px;
+}
+
+h1 {
+  padding-left: 1rem;
+}
+
+ion-item {
+  margin-bottom: 1rem;
+}
+
+.meta {
+  span + span::before { content: " • "; margin: 0 .5rem; }
+}

@@ -1,0 +1,30 @@
+.shows {
+  display: flex;
+}
+
+.popular-wrapper {
+  --thumb-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.view-all {
+  flex: 0 0 150px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+h1 {
+  margin-left: 1rem;
+}
+
+.show-container {
+  app-show-thumb:first-child {
+    margin-left: 1rem;
+  }
+}

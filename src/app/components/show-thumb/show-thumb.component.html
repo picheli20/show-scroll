@@ -1,0 +1,10 @@
+<div class="thumb-wrapper">
+  <img
+    [src]="show().image ? show().image[size()]: '/assets/thumb-movie-dark.png'"
+    [alt]="show().name"
+    loading="lazy"
+    (load)="loaded.set(true)"
+    [class.loaded]="loaded()"
+  />
+  <ng-content></ng-content>
+</div>

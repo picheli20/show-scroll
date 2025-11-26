@@ -1,0 +1,47 @@
+app-show-thumb {
+  --thumb-width: 500px;
+  margin: 2rem auto;
+  display: block;
+}
+
+.info {
+  padding: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  .meta {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: .5rem;
+    span + span::before { content: " • "; margin: 0 .5rem; }
+  }
+
+
+  .actions {
+    margin-top: 1.5ren;
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+  }
+}
+
+.content-section {
+  padding: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  .summary {
+    line-height: 1.7;
+    opacity: 0.9;
+    font-size: 1.1rem;
+  }
+}
+
+.not-found {
+  text-align: center;
+  padding: 4rem;
+
+  h1 {
+    font-size: 3rem;
+  }
+}

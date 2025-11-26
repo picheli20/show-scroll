@@ -1,0 +1,62 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ show()?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="detail-page">
+  @let showData = show();
+
+  @if (showData) {
+    <app-show-thumb [show]="showData" size="original"></app-show-thumb>
+    <div class="hero-gradient"></div>
+
+    <div class="info">
+      <h1 class="title">{{ showData?.name }}</h1>
+      <div class="meta">
+        @if (showData?.ended) {
+          <span class="year">{{ showData?.premiered | date:'yyyy' }} - {{  showData?.ended | date:'yyyy' }}</span>
+        } @else {
+          <span class="year">{{ showData?.premiered | date:'yyyy' }} (Running)</span>
+        }
+        <span class="rating">{{ showData?.rating?.average ?? 'N/A' }} <ion-icon name="star"></ion-icon></span>
+        <span class="runtime">{{ showData?.averageRuntime }}m</span>
+      </div>
+      <div class="genres">
+        @for (genre of showData?.genres; track genre) {
+          <ion-chip>{{ genre }}</ion-chip>
+        }
+      </div>
+      @if (showData?.officialSite) {
+        <div class="actions">
+          <ion-button expand="block" size="large" color="primary" [href]="showData?.officialSite" target="_blank">
+            <ion-icon name="play" slot="start"></ion-icon>
+            Watch
+          </ion-button>
+          <ion-button fill="clear" color="light" (click)="share(showData)">
+            <ion-icon name="share-social" slot="icon-only"></ion-icon>
+          </ion-button>
+        </div>
+      }
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="content-section">
+      <h2>Overview</h2>
+      <p class="summary" [innerHTML]="show()?.summary"></p>
+    </div>
+  } @else {
+    <div class="not-found">
+      <h1>Show not found</h1>
+
+      <ion-button fill="outline" routerLink="/">
+        Return
+      </ion-button>
+    </div>
+  }
+
+
+</ion-content>

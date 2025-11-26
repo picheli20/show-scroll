@@ -1,0 +1,7 @@
+{
+  "name": "Show Scroll",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

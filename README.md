@@ -13,6 +13,8 @@ A modern TV show discovery application built with Angular and Ionic, featuring a
 - **Share Functionality**: Share shows via native share API or Capacitor Share
 - **Cross-platform**: Runs on web, iOS, and Android
 
+<video src="https://i.imgur.com/KmBtzRX.mp4" controls autoplay loop></video>
+
 ## 🏗️ Architecture
 
 ### Technology Stack

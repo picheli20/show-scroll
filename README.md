@@ -14,9 +14,7 @@ A modern TV show discovery application built with Angular and Ionic, featuring a
 - **Cross-platform**: Runs on web, iOS, and Android
 
 
-
-https://github.com/user-attachments/assets/aaa90ed3-e983-4a8e-96b3-45e977d40e56
-
+https://github.com/user-attachments/assets/52eec92e-7840-4ab9-8f1d-64f9ffaadde0
 
 
 ## 🏗️ Architecture

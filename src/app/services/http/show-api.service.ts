@@ -5,26 +5,23 @@ import { of } from 'rxjs';
 import { SearchShow } from 'src/app/interfaces/search-show.interface';
 import { Show } from 'src/app/interfaces/show.interface';
 import { getShows } from 'src/app/store/selectors/show.selector';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShowApiService {
-  private readonly apiUrl = 'https://api.tvmaze.com/';
+  private readonly apiUrl = environment.apiUrl;
 
   private http = inject(HttpClient);
   private store = inject(Store);
 
   load() {
-    return this.http.get<Show[]>(`${this.apiUrl}shows`);
-  }
-
-  loadOne() {
-    return this.http.get<Show[]>(`${this.apiUrl}shows`);
+    return this.http.get<Show[]>(`${this.apiUrl}/shows`);
   }
 
   search(q: string) {
-    return this.http.get<SearchShow[]>(`${this.apiUrl}search/shows?q=${q}`);
+    return this.http.get<SearchShow[]>(`${this.apiUrl}/search/shows?q=${q}`);
   }
 
   detail(id: string) {
@@ -35,6 +32,6 @@ export class ShowApiService {
       return of(detailShow);
     }
 
-    return this.http.get<Show>(`${this.apiUrl}shows/${id}`);
+    return this.http.get<Show>(`${this.apiUrl}/shows/${id}`);
   }
 }

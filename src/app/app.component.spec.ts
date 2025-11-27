@@ -11,7 +11,11 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [provideMockStore()]
+      providers: [
+        provideMockStore({
+          initialState: { page: { theme: 'dark' } }
+        })
+      ]
     }).compileComponents();
   });
 

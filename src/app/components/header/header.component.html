@@ -1,6 +1,14 @@
 <ion-header translucent collapse="fade">
   <ion-toolbar>
     <ion-buttons slot="end">
+      <!-- Dark mode toggler -->
+      <ion-button fill="clear" (click)="toggleTheme()">
+        @if(isDarkTheme()) {
+          <ion-icon name="sunny"></ion-icon>
+        } @else {
+          <ion-icon name="moon"></ion-icon>
+        }
+      </ion-button>
       <ion-button fill="clear" (click)="openSearchModal()">
         <ion-icon name="search"></ion-icon>
       </ion-button>

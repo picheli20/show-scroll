@@ -2,6 +2,16 @@
   --thumb-width: 100px;
 }
 
+ion-header {
+  --ion-color-base: var(--search-bar-bg);
+  --ion-background-color: var(--search-bar-bg);
+
+  ion-searchbar {
+    --box-shadow: none;
+    color: var(--search-bar-color);
+  }
+}
+
 h1 {
   padding-left: 1rem;
 }
@@ -11,5 +21,8 @@ ion-item {
 }
 
 .meta {
-  span + span::before { content: " • "; margin: 0 .5rem; }
+  span+span::before {
+    content: " • ";
+    margin: 0 .5rem;
+  }
 }

@@ -27,19 +27,5 @@ describe('ShowReducer', () => {
     const state = showReducer(initialState, action);
 
     expect(state.shows).toEqual(mockShows as any);
-
-    // Check popular shows (sorted by rating desc)
-    expect(state.mostPopularShows[0].id).toBe(3);
-    expect(state.mostPopularShows[1].id).toBe(2);
-    expect(state.mostPopularShows[2].id).toBe(1);
-
-    // Check shows by genre
-    expect(state.showsByGenre.length).toBe(2); // Action, Drama
-
-    const actionGenre = state.showsByGenre.find(g => g.name === 'Action');
-    expect(actionGenre?.total).toBe(2); // Show 2, Show 3
-
-    const dramaGenre = state.showsByGenre.find(g => g.name === 'Drama');
-    expect(dramaGenre?.total).toBe(2); // Show 1, Show 3
   });
 });

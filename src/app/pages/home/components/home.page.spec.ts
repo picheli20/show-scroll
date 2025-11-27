@@ -18,7 +18,7 @@ describe('HomePage', () => {
         provideMockStore({
           selectors: [
             { selector: getShowsByGenre, value: [] },
-            { selector: getRandomPopularShow, value: { id: 1, name: 'Test', image: { medium: 'img' } } },
+            { selector: getRandomPopularShow, value: { id: 1, name: 'Test', image: { medium: 'img' }, rating: { average: 5 }, genres: ['Drama'] } },
             { selector: isShowLoading, value: false }
           ]
         })

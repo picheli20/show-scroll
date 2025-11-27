@@ -16,7 +16,9 @@ describe('DetailPage', () => {
   const mockShow = {
     id: 1,
     name: 'Test Show',
-    image: { medium: 'test.jpg', original: 'test-orig.jpg' }
+    image: { medium: 'test.jpg', original: 'test-orig.jpg' },
+    rating: { average: 8 },
+    genres: ['Drama']
   };
 
   beforeEach(waitForAsync(() => {

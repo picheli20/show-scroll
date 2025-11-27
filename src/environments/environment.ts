@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  appUrl: `https://demo.show-scroll.com`
+  appUrl: `https://demo.show-scroll.com`,
+  apiUrl: `https://api.tvmaze.com`,
 };
 
 /*

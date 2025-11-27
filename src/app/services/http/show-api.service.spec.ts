@@ -51,15 +51,7 @@ describe('ShowApiService', () => {
     req.flush(mockShows);
   });
 
-  it('should load one (same as load)', () => {
-    service.loadOne().subscribe(shows => {
-      expect(shows.length).toBe(2);
-    });
 
-    const req = httpMock.expectOne('https://api.tvmaze.com/shows');
-    expect(req.request.method).toBe('GET');
-    req.flush(mockShows);
-  });
 
   it('should search shows', () => {
     const searchResults = [{ show: mockShows[0] }];

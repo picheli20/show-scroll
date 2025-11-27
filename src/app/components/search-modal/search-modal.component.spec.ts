@@ -16,8 +16,8 @@ describe('SearchModalComponent', () => {
   let modalControllerSpy: any;
 
   const mockShows = [
-    { id: 1, name: 'Show 1', rating: { average: 8 } },
-    { id: 2, name: 'Show 2', rating: { average: 9 } }
+    { id: 1, name: 'Show 1', rating: { average: 8 }, genres: ['Drama'] },
+    { id: 2, name: 'Show 2', rating: { average: 9 }, genres: ['Action'] }
   ];
 
   beforeEach(waitForAsync(() => {

@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { Show } from 'src/app/interfaces/show.interface';
 import { ShowState } from '../interfaces/show.interface';
 
 export const selectShow = createFeatureSelector<ShowState>('show');
@@ -8,28 +9,53 @@ export const isShowLoading = createSelector(
   (state) => state.isLoading,
 );
 
-export const getShowsByGenre = createSelector(
-  selectShow,
-  (state) => state.showsByGenre,
-);
-
 export const getShows = createSelector(
   selectShow,
   (state) => state.shows,
 );
 
 export const getPopularShows = createSelector(
-  selectShow,
-  (state) => state.mostPopularShows,
+  getShows,
+  (shows) => [...shows].sort((a, b) => (b.rating.average ?? 0) - (a.rating.average ?? 0)).slice(0, 20),
+);
+
+export const getShowsByGenre = createSelector(
+  getShows,
+  (shows) => {
+    const groupedByGenres: { [key: string]: Show[] } = {};
+    const popuplarShows: Show[] = [...shows].sort((a, b) => (b.rating.average ?? 0) - (a.rating.average ?? 0));
+
+    popuplarShows.forEach((show) => {
+      show.genres?.forEach((genre) => {
+        if (!groupedByGenres[genre]) {
+          groupedByGenres[genre] = [];
+        }
+        groupedByGenres[genre].push(show);
+      });
+    });
+
+    return Object.keys(groupedByGenres)
+      .sort((a, b) => a.localeCompare(b))
+      .map((genre) => ({
+        name: genre.charAt(0).toUpperCase() + genre.slice(1),
+        total: groupedByGenres[genre].length,
+        all: groupedByGenres[genre],
+        populars: groupedByGenres[genre].slice(0, 20),
+      }));
+  }
 );
 
 export const getRandomPopularShow = createSelector(
-  selectShow,
-  (state) => {
-    const index = Math.floor(Math.random() * state.mostPopularShows.length);
+  getPopularShows,
+  (popularShows) => {
+    if (popularShows.length === 0) {
+      return {} as any;
+    }
+
+    const index = Math.floor(Math.random() * popularShows.length);
 
     return {
-      ...state.mostPopularShows[index],
+      ...popularShows[index],
       position: index + 1,
     };
   }

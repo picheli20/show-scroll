@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule, ModalController } from '@ionic/angular';
+import { provideMockStore } from '@ngrx/store/testing';
+import { Theme } from 'src/app/enums/theme.enum';
+import { getTheme } from 'src/app/store/selectors/page.selector';
 import { SearchModalComponent } from '../search-modal/search-modal.component';
 import { HeaderComponent } from './header.component';
 
@@ -17,7 +20,12 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       imports: [IonicModule.forRoot(), HeaderComponent],
       providers: [
-        { provide: ModalController, useValue: spy }
+        { provide: ModalController, useValue: spy },
+        provideMockStore({
+          selectors: [
+            { selector: getTheme, value: Theme.DARK }
+          ]
+        })
       ]
     }).compileComponents();
 

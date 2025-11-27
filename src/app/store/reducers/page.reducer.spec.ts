@@ -1,5 +1,5 @@
 import { Theme } from '../../enums/theme.enum';
-import { setTheme } from '../actions/page.actions';
+import { setTheme, setViewingGenre } from '../actions/page.actions';
 import { initialState, pageReducer } from './page.reducer';
 
 describe('pageReducer', () => {
@@ -18,6 +18,32 @@ describe('pageReducer', () => {
 
       expect(state.theme).toBe(Theme.DARK);
       expect(state.isLoading).toBe(initialState.isLoading);
+    });
+  });
+
+  describe('setViewingGenre', () => {
+    it('should set viewingGenre to a genre name', () => {
+      const action = setViewingGenre('Drama');
+      const state = pageReducer(initialState, action);
+
+      expect(state.viewingGenre).toBe('Drama');
+      expect(state.theme).toBe(initialState.theme);
+      expect(state.isLoading).toBe(initialState.isLoading);
+    });
+
+    it('should set viewingGenre to undefined', () => {
+      const action = setViewingGenre(undefined);
+      const state = pageReducer({ ...initialState, viewingGenre: 'Comedy' }, action);
+
+      expect(state.viewingGenre).toBeUndefined();
+      expect(state.theme).toBe(initialState.theme);
+    });
+
+    it('should update viewingGenre from one genre to another', () => {
+      const action = setViewingGenre('Action');
+      const state = pageReducer({ ...initialState, viewingGenre: 'Drama' }, action);
+
+      expect(state.viewingGenre).toBe('Action');
     });
   });
 });

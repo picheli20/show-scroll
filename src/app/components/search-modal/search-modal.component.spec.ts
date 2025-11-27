@@ -98,4 +98,13 @@ describe('SearchModalComponent', () => {
     component.dismiss();
     expect(modalControllerSpy.dismiss).toHaveBeenCalled();
   });
+
+  it('should focus searchbar on ionViewWillEnter', () => {
+    const setFocusSpy = jest.fn();
+    component.searchbar = { setFocus: setFocusSpy } as any;
+
+    component.ionViewWillEnter();
+
+    expect(setFocusSpy).toHaveBeenCalled();
+  });
 });

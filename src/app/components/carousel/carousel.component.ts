@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./carousel.component.scss'],
 })
 export class CarouselComponent {
+  scrolled = output();
+
+  scrollHandler() {
+    this.scrolled.emit();
+  }
 }

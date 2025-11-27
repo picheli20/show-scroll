@@ -28,3 +28,18 @@ h1 {
     margin-left: 1rem;
   }
 }
+
+app-show-thumb {
+  transition: all 1s ease;
+
+  &.faded {
+    opacity: 0.5;
+    filter: blur(2px);
+  }
+
+  &.active {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+

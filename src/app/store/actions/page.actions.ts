@@ -4,3 +4,4 @@ import { Theme } from '../../enums/theme.enum';
 export const appInit = createAction('[Page] appInit');
 export const setTheme = createAction('[Page] Set Theme', (theme: Theme) => ({ theme }));
 export const setLoading = createAction('[Page] Loading', (isLoading: boolean) => ({ isLoading }));
+export const setViewingGenre = createAction('[Page] Set Viewing Genre', (genre?: string) => ({ genre }));

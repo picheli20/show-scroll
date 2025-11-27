@@ -12,3 +12,8 @@ export const selectTheme = createSelector(
   selectPage,
   (state) => state.theme,
 );
+
+export const selectViewingGenre = createSelector(
+  selectPage,
+  (state) => state.viewingGenre,
+);

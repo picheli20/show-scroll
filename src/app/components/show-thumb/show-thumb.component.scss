@@ -4,6 +4,7 @@
   max-width: 100%;
   aspect-ratio: 30 / 43;
   display: block;
+  filter: hue-rotate(10deg) saturate(1.1) contrast(1.05);
 }
 
 .thumb-wrapper {
@@ -21,7 +22,6 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity .3s ease;
 }
 
 .thumb-wrapper img.loaded {

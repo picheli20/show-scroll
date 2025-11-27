@@ -7,10 +7,5 @@
   display: flex;
   overflow-x: auto;
   width: 100%;
-  scroll-snap-type: x mandatory;
   gap: .5rem;
-}
-
-.carousel-content::ng-deep > * {
-  scroll-snap-align: start;
 }

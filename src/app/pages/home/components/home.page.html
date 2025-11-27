@@ -1,29 +1,33 @@
 <app-header></app-header>
-<ion-content [fullscreen]="true">
-<div class="popular-wrapper">
-  @if (randomShow().id) {
-    <app-show-thumb [show]="randomShow()" size="original" [routerLink]="['/detail', randomShow().id]">
-      <app-position [position]="randomShow().position"></app-position>
-    </app-show-thumb>
-  }
-</div>
-
-@for (item of showsByGenre(); track item.name) {
-  <div class="show-container">
-    <h1>{{ item.name }}</h1>
-
-    <app-carousel>
-      @for (show of item.populars; track show.id) {
-        <app-show-thumb [show]="show" [routerLink]="['/detail', show.id]"></app-show-thumb>
-      }
-
-      @if (item.populars.length < item.total) {
-        <div class="view-all">
-          View all <ion-icon name="chevron-forward-outline"></ion-icon>
-        </div>
-      }
-    </app-carousel>
+<ion-content [fullscreen]="true" (ionScroll)="scrollHandler()" scrollEvents="true">
+  <div class="popular-wrapper">
+    @if (randomShow().id) {
+      <app-show-thumb [show]="randomShow()" size="original" [routerLink]="['/detail', randomShow().id]" [class.faded]="viewingGenre()">
+        <app-position [position]="randomShow().position"></app-position>
+      </app-show-thumb>
+    }
   </div>
 
-}
+  @for (item of showsByGenre(); track item.name) {
+    <div class="show-container">
+      <h1>{{ item.name }}</h1>
+
+      <app-carousel (scrolled)="genreScrollHandler(item.name)">
+        @for (show of item.populars; track show.id) {
+          <app-show-thumb
+            [show]="show"
+            [routerLink]="['/detail', show.id]"
+            [class.faded]="viewingGenre()"
+            [class.active]="viewingGenre() === item.name"></app-show-thumb>
+        }
+
+        @if (item.populars.length < item.total) {
+          <div class="view-all">
+            View all <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
+        }
+      </app-carousel>
+    </div>
+
+  }
 </ion-content>

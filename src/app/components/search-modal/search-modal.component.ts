@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { finalize } from 'rxjs';
 import { Show } from 'src/app/interfaces/show.interface';
 import { ShowApiService } from 'src/app/services/http/show-api.service';
-import { getPopularShows } from 'src/app/store/selectors/show.selector';
+import { selectPopularShows } from 'src/app/store/selectors/show.selector';
 import { ShowThumbComponent } from '../show-thumb/show-thumb.component';
 
 @Component({
@@ -53,7 +53,7 @@ export class SearchModalComponent implements OnInit {
   }
 
   private pickPopulars() {
-    const shows = this.store.selectSignal(getPopularShows)();
+    const shows = this.store.selectSignal(selectPopularShows)();
 
     this.isPopular.set(true);
     this.results.set(shows);

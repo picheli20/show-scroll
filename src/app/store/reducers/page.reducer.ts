@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Theme } from '../../enums/theme.enum';
-import { setLoading, setTheme } from '../actions/page.actions';
+import { setTheme } from '../actions/page.actions';
 import { PageState } from '../interfaces/page.interface';
 
 export const initialState: PageState = {
@@ -10,11 +10,7 @@ export const initialState: PageState = {
 
 export const pageReducer = createReducer(
   initialState,
-  on(setLoading, (state, { isLoading }) => ({
-    ...state,
-    isLoading,
-  })),
-  on(setTheme, (state, { theme }) => ({
+  on(setTheme, (state, { theme }): PageState => ({
     ...state,
     theme,
   })),

@@ -4,23 +4,23 @@ import { ShowState } from '../interfaces/show.interface';
 
 export const selectShow = createFeatureSelector<ShowState>('show');
 
-export const isShowLoading = createSelector(
+export const selectIsShowLoading = createSelector(
   selectShow,
   (state) => state.isLoading,
 );
 
-export const getShows = createSelector(
+export const selectShows = createSelector(
   selectShow,
   (state) => state.shows,
 );
 
-export const getPopularShows = createSelector(
-  getShows,
+export const selectPopularShows = createSelector(
+  selectShows,
   (shows) => [...shows].sort((a, b) => (b.rating.average ?? 0) - (a.rating.average ?? 0)).slice(0, 20),
 );
 
-export const getShowsByGenre = createSelector(
-  getShows,
+export const selectShowsByGenre = createSelector(
+  selectShows,
   (shows) => {
     const groupedByGenres: { [key: string]: Show[] } = {};
     const popuplarShows: Show[] = [...shows].sort((a, b) => (b.rating.average ?? 0) - (a.rating.average ?? 0));
@@ -45,8 +45,8 @@ export const getShowsByGenre = createSelector(
   }
 );
 
-export const getRandomPopularShow = createSelector(
-  getPopularShows,
+export const selectRandomPopularShow = createSelector(
+  selectPopularShows,
   (popularShows) => {
     if (popularShows.length === 0) {
       return {} as any;

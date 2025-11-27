@@ -2,7 +2,7 @@ import { DOCUMENT, inject, Injectable } from '@angular/core';
 import { isPlatform } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Theme } from '../enums/theme.enum';
-import { getTheme } from '../store/selectors/page.selector';
+import { selectTheme } from '../store/selectors/page.selector';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class PageService {
   }
 
   setTheme() {
-    const theme = this.store.selectSignal(getTheme)();
+    const theme = this.store.selectSignal(selectTheme)();
     globalThis.localStorage.setItem(this.STORAGE_KEY, theme);
 
     const html = this.document.documentElement;

@@ -10,11 +10,11 @@ export class ShowEffects {
   private actions$ = inject(Actions);
   private showApiService = inject(ShowApiService);
 
-  loadShow$ = createEffect(() =>
-    this.actions$.pipe(
+  loadShow$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(appInit),
       switchMap(() => this.showApiService.load()),
       map(show => setShows(show)),
-    )
-  )
+    );
+  });
 }

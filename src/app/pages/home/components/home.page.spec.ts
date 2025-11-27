@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { provideMockStore } from '@ngrx/store/testing';
-import { getRandomPopularShow, getShowsByGenre, isShowLoading } from 'src/app/store/selectors/show.selector';
+import { selectIsShowLoading, selectRandomPopularShow, selectShowsByGenre } from 'src/app/store/selectors/show.selector';
 import { HomePage } from './home.page';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -17,9 +17,9 @@ describe('HomePage', () => {
       providers: [
         provideMockStore({
           selectors: [
-            { selector: getShowsByGenre, value: [] },
-            { selector: getRandomPopularShow, value: { id: 1, name: 'Test', image: { medium: 'img' }, rating: { average: 5 }, genres: ['Drama'] } },
-            { selector: isShowLoading, value: false }
+            { selector: selectShowsByGenre, value: [] },
+            { selector: selectRandomPopularShow, value: { id: 1, name: 'Test', image: { medium: 'img' }, rating: { average: 5 }, genres: ['Drama'] } },
+            { selector: selectIsShowLoading, value: false }
           ]
         })
       ],

@@ -1,6 +1,6 @@
 import { Theme } from '../../enums/theme.enum';
 import { PageState } from '../interfaces/page.interface';
-import { getTheme, isLoading } from './page.selector';
+import { selectIsLoading, selectTheme } from './page.selector';
 
 describe('Page Selectors', () => {
   const mockState: { page: PageState } = {
@@ -10,31 +10,31 @@ describe('Page Selectors', () => {
     },
   };
 
-  describe('isLoading', () => {
+  describe('selectIsLoading', () => {
     it('should select isLoading from state', () => {
-      const result = isLoading(mockState);
+      const result = selectIsLoading(mockState);
       expect(result).toBe(true);
     });
 
-    it('should return false if isLoading is false', () => {
+    it('should return false when isLoading is false', () => {
       const state: { page: PageState } = {
         page: { isLoading: false, theme: Theme.LIGHT },
       };
-      expect(isLoading(state)).toBe(false);
+      expect(selectIsLoading(state)).toBe(false);
     });
   });
 
-  describe('getTheme', () => {
+  describe('selectTheme', () => {
     it('should select theme from state', () => {
-      const result = getTheme(mockState);
+      const result = selectTheme(mockState);
       expect(result).toBe(Theme.DARK);
     });
 
-    it('should return light if theme is light', () => {
+    it('should return light theme when set', () => {
       const state: { page: PageState } = {
         page: { isLoading: false, theme: Theme.LIGHT },
       };
-      expect(getTheme(state)).toBe(Theme.LIGHT);
+      expect(selectTheme(state)).toBe(Theme.LIGHT);
     });
   });
 });

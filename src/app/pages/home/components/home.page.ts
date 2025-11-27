@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getRandomPopularShow, getShowsByGenre } from 'src/app/store/selectors/show.selector';
+import { selectRandomPopularShow, selectShowsByGenre } from 'src/app/store/selectors/show.selector';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +11,6 @@ import { getRandomPopularShow, getShowsByGenre } from 'src/app/store/selectors/s
 export class HomePage {
   store = inject(Store);
 
-  showsByGenre = this.store.selectSignal(getShowsByGenre);
-  randomShow = this.store.selectSignal(getRandomPopularShow);
+  showsByGenre = this.store.selectSignal(selectShowsByGenre);
+  randomShow = this.store.selectSignal(selectRandomPopularShow);
 }

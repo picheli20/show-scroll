@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { SearchShow } from 'src/app/interfaces/search-show.interface';
 import { Show } from 'src/app/interfaces/show.interface';
-import { getShows } from 'src/app/store/selectors/show.selector';
+import { selectShows } from 'src/app/store/selectors/show.selector';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -25,7 +25,7 @@ export class ShowApiService {
   }
 
   detail(id: string) {
-    const shows = this.store.selectSignal(getShows)();
+    const shows = this.store.selectSignal(selectShows)();
     const detailShow = shows.find(item => `${item.id}` === `${id}`);
 
     if (detailShow) {

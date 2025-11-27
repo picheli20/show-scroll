@@ -3,16 +3,12 @@ import { PageState } from '../interfaces/page.interface';
 
 export const selectPage = createFeatureSelector<PageState>('page');
 
-export const isLoading = createSelector(
+export const selectIsLoading = createSelector(
   selectPage,
-  (state) => {
-    return state.isLoading;
-  }
+  (state) => state.isLoading,
 );
 
-export const getTheme = createSelector(
+export const selectTheme = createSelector(
   selectPage,
-  (state) => {
-    return state.theme;
-  }
+  (state) => state.theme,
 );

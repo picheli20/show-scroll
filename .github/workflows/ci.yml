@@ -26,10 +26,3 @@ jobs:
 
     - name: Run tests
       run: npm test -- --coverage --watchAll=false
-
-    - name: Upload coverage reports
-      uses: codecov/codecov-action@v4
-      if: success()
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        fail_ci_if_error: false

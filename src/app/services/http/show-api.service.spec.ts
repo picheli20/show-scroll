@@ -1,7 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { getShows } from 'src/app/store/selectors/show.selector';
+import { selectShows } from 'src/app/store/selectors/show.selector';
 import { ShowApiService } from './show-api.service';
 
 describe('ShowApiService', () => {
@@ -21,7 +21,7 @@ describe('ShowApiService', () => {
         ShowApiService,
         provideMockStore({
           selectors: [
-            { selector: getShows, value: mockShows }
+            { selector: selectShows, value: mockShows }
           ]
         })
       ]

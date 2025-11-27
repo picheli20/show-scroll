@@ -12,32 +12,32 @@ describe('ShowSelectors', () => {
   };
 
   it('should select loading state', () => {
-    const result = selectors.isShowLoading.projector(initialState);
+    const result = selectors.selectIsShowLoading.projector(initialState);
     expect(result).toBe(false);
   });
 
   it('should select shows', () => {
-    const result = selectors.getShows.projector(initialState);
+    const result = selectors.selectShows.projector(initialState);
     expect(result.length).toBe(3);
   });
 
   it('should select shows by genre', () => {
-    const result = selectors.getShowsByGenre.projector(initialState.shows);
+    const result = selectors.selectShowsByGenre.projector(initialState.shows);
     expect(result.length).toBe(2);
 
-    const actionGenre = result.find(g => g.name === 'Action');
+    const actionGenre = result.find((g: any) => g.name === 'Action');
     expect(actionGenre?.total).toBe(2);
   });
 
   it('should select popular shows', () => {
-    const result = selectors.getPopularShows.projector(initialState.shows);
+    const result = selectors.selectPopularShows.projector(initialState.shows);
     expect(result.length).toBe(3);
     expect(result[0].id).toBe(3); // Highest rating
   });
 
   it('should select random popular show', () => {
-    const popularShows = selectors.getPopularShows.projector(initialState.shows);
-    const result = selectors.getRandomPopularShow.projector(popularShows);
+    const popularShows = selectors.selectPopularShows.projector(initialState.shows);
+    const result = selectors.selectRandomPopularShow.projector(popularShows);
 
     expect(result).toBeTruthy();
     expect(result.position).toBeGreaterThan(0);

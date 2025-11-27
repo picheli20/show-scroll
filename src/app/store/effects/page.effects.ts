@@ -9,18 +9,17 @@ export class PageEffects {
   private actions$ = inject(Actions);
   private pageService = inject(PageService);
 
-  setTheme$ = createEffect(() =>
-    this.actions$.pipe(
+  setTheme$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(setTheme),
       tap(() => this.pageService.setTheme()),
-    ), { dispatch: false }
-  );
+    );
+  }, { dispatch: false });
 
-  loadTheme$ = createEffect(() =>
-    this.actions$.pipe(
+  loadTheme$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(appInit),
-      map(() => this.pageService.getDetaultTheme()),
-      map(theme => setTheme(theme)),
-    )
-  )
+      map(() => setTheme(this.pageService.getDetaultTheme()))
+    );
+  });
 }

@@ -9,11 +9,11 @@ export const initialState: ShowState = {
 
 export const showReducer = createReducer(
   initialState,
-  on(setShowLoading, (state, { isLoading }) => ({
+  on(setShowLoading, (state, { isLoading }): ShowState => ({
     ...state,
     isLoading,
   })),
-  on(setShows, (state, { shows }) => ({
+  on(setShows, (state, { shows }): ShowState => ({
     ...state,
     shows,
   })),

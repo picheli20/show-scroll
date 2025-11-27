@@ -6,7 +6,7 @@ import { IonicModule, ModalController } from '@ionic/angular';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 import { ShowApiService } from 'src/app/services/http/show-api.service';
-import { getPopularShows } from 'src/app/store/selectors/show.selector';
+import { selectPopularShows } from 'src/app/store/selectors/show.selector';
 import { SearchModalComponent } from './search-modal.component';
 
 describe('SearchModalComponent', () => {
@@ -41,7 +41,7 @@ describe('SearchModalComponent', () => {
         { provide: ModalController, useValue: modalSpy },
         provideMockStore({
           selectors: [
-            { selector: getPopularShows, value: mockShows }
+            { selector: selectPopularShows, value: mockShows }
           ]
         })
       ]

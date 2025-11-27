@@ -1,9 +1,9 @@
-import { Component, HostListener, inject, signal } from '@angular/core';
+import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Theme } from 'src/app/enums/theme.enum';
 import { setTheme } from 'src/app/store/actions/page.actions';
-import { getTheme } from 'src/app/store/selectors/page.selector';
+import { selectTheme } from 'src/app/store/selectors/page.selector';
 import { SearchModalComponent } from '../search-modal/search-modal.component';
 
 @Component({
@@ -12,11 +12,11 @@ import { SearchModalComponent } from '../search-modal/search-modal.component';
   styleUrls: ['header.component.scss'],
   imports: [IonicModule],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   private modalController = inject(ModalController);
   private store = inject(Store);
 
-  private theme$ = this.store.select(getTheme);
+  private theme$ = this.store.select(selectTheme);
   isDarkTheme = signal(true);
 
   @HostListener('window:keydown.control.k', ['$event'])

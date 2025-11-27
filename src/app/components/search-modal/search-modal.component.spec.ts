@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
@@ -14,6 +14,7 @@ describe('SearchModalComponent', () => {
   let fixture: ComponentFixture<SearchModalComponent>;
   let showApiServiceSpy: any;
   let modalControllerSpy: any;
+  let routerDepSpy: any;
 
   const mockShows = [
     { id: 1, name: 'Show 1', rating: { average: 8 }, genres: ['Drama'] },
@@ -27,6 +28,9 @@ describe('SearchModalComponent', () => {
     const modalSpy = {
       dismiss: jest.fn()
     };
+    const routerSpy = {
+      navigate: jest.fn()
+    };
 
     TestBed.configureTestingModule({
       imports: [
@@ -39,6 +43,7 @@ describe('SearchModalComponent', () => {
       providers: [
         { provide: ShowApiService, useValue: apiSpy },
         { provide: ModalController, useValue: modalSpy },
+        { provide: Router, useValue: routerSpy },
         provideMockStore({
           selectors: [
             { selector: selectPopularShows, value: mockShows }
@@ -51,8 +56,16 @@ describe('SearchModalComponent', () => {
     fixture = TestBed.createComponent(SearchModalComponent);
     component = fixture.componentInstance;
     const ctrl = fixture.debugElement.injector.get(ModalController);
+
+    ctrl.dismiss = modalSpy.dismiss;
+    routerSpy.navigate = routerSpy.navigate;
+
     jest.spyOn(ctrl, 'dismiss');
+    jest.spyOn(routerSpy, 'navigate');
+
     modalControllerSpy = ctrl as any;
+    routerDepSpy = routerSpy as any;
+
     fixture.detectChanges();
   }));
 
@@ -94,9 +107,11 @@ describe('SearchModalComponent', () => {
     expect(component.isPopular()).toBe(true);
   });
 
-  it('should dismiss modal', () => {
-    component.dismiss();
+  it('should dismiss modal', async () => {
+    await component.dismiss(1);
+
     expect(modalControllerSpy.dismiss).toHaveBeenCalled();
+    expect(routerDepSpy.navigate).toHaveBeenCalledWith(['/detail', 1]);
   });
 
   it('should focus searchbar on ionViewWillEnter', () => {

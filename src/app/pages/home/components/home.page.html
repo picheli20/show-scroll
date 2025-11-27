@@ -2,7 +2,7 @@
 <ion-content [fullscreen]="true" (ionScroll)="scrollHandler()" scrollEvents="true">
   <div class="popular-wrapper">
     @if (randomShow().id) {
-      <app-show-thumb [show]="randomShow()" size="original" [routerLink]="['/detail', randomShow().id]" [class.faded]="viewingGenre()">
+      <app-show-thumb [show]="randomShow()" size="original" routerDirection="forward" [routerLink]="['/detail', randomShow().id]" [class.faded]="viewingGenre()">
         <app-position [position]="randomShow().position"></app-position>
       </app-show-thumb>
     }
@@ -17,6 +17,7 @@
           <app-show-thumb
             [show]="show"
             [routerLink]="['/detail', show.id]"
+            routerDirection="forward"
             [class.faded]="viewingGenre()"
             [class.active]="viewingGenre() === item.name"></app-show-thumb>
         }

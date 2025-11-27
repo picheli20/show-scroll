@@ -18,7 +18,7 @@
       <h1>Results for "{{ query.value }}"</h1>
     }
     @for (show of results(); track show.id) {
-      <ion-item (click)="dismiss()" [routerLink]="['/detail', show.id]">
+      <ion-item (click)="dismiss(show.id)">
         <app-show-thumb [show]="show" slot="start"></app-show-thumb>
         <ion-label>
           <h2>{{ show.name }}</h2>

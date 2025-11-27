@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { setViewingGenre } from 'src/app/store/actions/page.actions';
 import { selectViewingGenre } from 'src/app/store/selectors/page.selector';
@@ -9,6 +9,7 @@ import { selectRandomPopularShow, selectShowsByGenre } from 'src/app/store/selec
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePage {
   store = inject(Store);

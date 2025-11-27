@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Share } from '@capacitor/share';
 import { LoadingController } from '@ionic/angular';
@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: 'detail.page.html',
   styleUrls: ['detail.page.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailPage implements OnInit {
   private route = inject(ActivatedRoute);

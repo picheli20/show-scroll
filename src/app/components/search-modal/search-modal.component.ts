@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { IonicModule, IonSearchbar, ModalController, ViewWillEnter } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { finalize } from 'rxjs';
@@ -21,6 +21,7 @@ export class SearchModalComponent implements OnInit, ViewWillEnter {
   private showApiService = inject(ShowApiService);
   private modalController = inject(ModalController);
   private store = inject(Store);
+  private router = inject(Router);
 
   @ViewChild('searchbar') searchbar!: IonSearchbar;
 
@@ -65,7 +66,8 @@ export class SearchModalComponent implements OnInit, ViewWillEnter {
     this.results.set(shows);
   }
 
-  dismiss() {
-    this.modalController.dismiss();
+  async dismiss(id?: number) {
+    await this.router.navigate(['/detail', id]);
+    await this.modalController.dismiss();
   }
 }

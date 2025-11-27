@@ -7,8 +7,8 @@ ion-header {
   --ion-background-color: var(--search-bar-bg);
 
   ion-searchbar {
-    --box-shadow: none;
     color: var(--search-bar-color);
+    --box-shadow: none;
   }
 }
 

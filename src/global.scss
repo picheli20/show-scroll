@@ -65,7 +65,8 @@ html {
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: "Work Sans", sans-serif;
+  color: var(--primary-color);
+  font-family: var(--font-family-accent);
   font-weight: 900 !important;
   font-style: normal;
   text-transform: uppercase;

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonicModule, IonSearchbar, ModalController, ViewWillEnter } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { finalize } from 'rxjs';
 import { Show } from 'src/app/interfaces/show.interface';
@@ -17,10 +17,12 @@ import { ShowThumbComponent } from '../show-thumb/show-thumb.component';
   imports: [IonicModule, ReactiveFormsModule, ShowThumbComponent, CommonModule, RouterModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchModalComponent implements OnInit {
+export class SearchModalComponent implements OnInit, ViewWillEnter {
   private showApiService = inject(ShowApiService);
   private modalController = inject(ModalController);
   private store = inject(Store);
+
+  @ViewChild('searchbar') searchbar!: IonSearchbar;
 
   query = new FormControl('', [Validators.minLength(3), Validators.required]);
 
@@ -30,6 +32,10 @@ export class SearchModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.pickPopulars();
+  }
+
+  ionViewWillEnter() {
+    this.searchbar.setFocus();
   }
 
   onSearch() {

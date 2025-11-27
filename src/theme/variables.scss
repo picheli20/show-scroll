@@ -1,12 +1,40 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
 
-html {
+:root {
   --movie-placeholder: url('/assets/thumb-movie-light.png');
   --search-bar-bg: #000;
   --search-bar-color: #fff;
 
-  &.dark {
+  --font-family-accent: "Work Sans", sans-serif;
+
+  --ion-background-color: #e3efe8;
+  --ion-toolbar-background: var(--ion-background-color);
+  --ion-text-color: #111512;
+  --primary-color: #2dd36f;
+  /** primary **/
+  --ion-color-primary: var(--primary-color);
+  --ion-color-primary-rgb: 45, 211, 111;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #2dd36f;
+  --ion-color-primary-tint: #2dd36f;
+
+  &.ion-palette-dark {
     --movie-placeholder: url('/assets/thumb-movie-dark.png');
+
+    --ion-background-color: #111512;
+    --ion-text-color: #e3efe8;
+    --ion-toolbar-background: var(--ion-background-color);
+
+    /** primary **/
+    --ion-color-primary: var(--primary-color);
+    --ion-color-primary-rgb: 45, 211, 111;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255, 255, 255;
+    --ion-color-primary-shade: #2dd36f;
+    --ion-color-primary-tint: #2dd36f;
+
   }
 }
+
